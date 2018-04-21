@@ -4,8 +4,7 @@
   "main": "src/server.js",
   "license": "MIT",
   "scripts": {
-    "build:client":
-      "webpack --config config/webpack.config.js --mode=production",
+    "build": "webpack --config config/webpack.config.js --mode=production",
     "dev:client":
       "webpack --config config/webpack.config.js --mode=development --watch",
     "dev:server": "nodemon server/server.js",
@@ -29,8 +28,6 @@
     "mongoose": "^5.0.15",
     "morgan": "^1.9.0",
     "nexmo": "^2.2.0",
-    "node-sass": "^4.8.3",
-    "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "uuid": "^3.2.1",
     "validator": "^9.4.1",
