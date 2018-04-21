@@ -1,0 +1,26 @@
+{
+  "name": "@yoyea/sms",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "compression": "^1.7.2",
+    "cors": "^2.8.4",
+    "crypto": "^1.0.1",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "express-rate-limit": "^2.11.0",
+    "helmet": "^3.12.0",
+    "mongoose": "^5.0.15",
+    "morgan": "^1.9.0",
+    "nexmo": "^2.2.0",
+    "uuid": "^3.2.1",
+    "validator": "^9.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}

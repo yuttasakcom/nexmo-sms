@@ -1,0 +1,5 @@
+{
+  "name": "@yoyea/sms",
+  "script": "src/server.js",
+  "instances": "4"
+}
