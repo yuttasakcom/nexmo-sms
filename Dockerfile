@@ -8,6 +8,7 @@ COPY pm2.json .
 # Install app dependencies
 ENV NPM_CONFIG_LOGLEVEL warn
 RUN npm install --production
+RUN npm run client:build
 
 # Show current folder structure in logs
 RUN ls -al -R
