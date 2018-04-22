@@ -7,16 +7,16 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
-        <router-link tag="li" to="/" class="nav-item active">
-          <a class="nav-link" href="#">SMS <span class="sr-only">(current)</span></a>
+        <router-link tag="li" to="/" class="nav-item" active-class="active" exact>
+          <a class="nav-link" href="#">OTP</a>
         </router-link>
-        <router-link tag="li" to="/client" class="nav-item">
-          <a class="nav-link" href="#">Client <span class="sr-only">(current)</span></a>
+        <router-link tag="li" to="/client" class="nav-item" active-class="active">
+          <a class="nav-link" href="#">Client</a>
         </router-link>
       </ul>
       <ul class="navbar-nav nav justify-content-end w-100">
         <router-link tag="li" to="/logout" class="nav-item active">
-          <a class="nav-link" href="#">Logout <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="#">Logout</a>
         </router-link>
       </ul>
     </div>

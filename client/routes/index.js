@@ -1,11 +1,11 @@
-import Sms from "@/pages/Sms";
+import Otp from "@/pages/Otp";
 import Client from "@/pages/Client";
 import Logout from "@/pages/Logout";
 
 const routes = [
   {
     path: "/",
-    component: Sms
+    component: Otp
   },
   {
     path: "/client",

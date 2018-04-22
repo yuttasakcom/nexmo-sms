@@ -4,6 +4,9 @@ import VueRouter from "vue-router";
 import routes from "./routes";
 import store from "./stores";
 
+import "@/plugins/core-components";
+import "@/plugins/date-filter";
+
 import App from "./App";
 
 import "@/public/assets/styles/main.css";

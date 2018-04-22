@@ -2,6 +2,9 @@ const validateOtpInput = require("../validations/otp/otp");
 const Nexmo = require("nexmo");
 const getCode = require("../utils/gen-code");
 
+const Otp = require("../models/Otp");
+const OtpResponse = require("../responses/OtpResponse");
+
 exports.create = (req, res, next) => {
   const { errors, isValid } = validateOtpInput(req.body);
 
@@ -37,8 +40,40 @@ exports.create = (req, res, next) => {
       next({ status: 500, message: errors });
       return;
     } else {
-      console.log(`Send OTP success`);
-      res.json({ success: true });
+      const otp = new Otp({
+        phone: req.body.phone,
+        phone_th: phone.join(""),
+        code
+      });
+
+      otp
+        .save()
+        .then(() => {
+          console.log(`Send OTP success`);
+          res.json({ success: true });
+        })
+        .catch(err => next(err));
     }
   });
+};
+
+exports.get = (req, res, next) => {
+  const result = Otp.find()
+    .limit(1)
+    .sort({ createdAt: -1 });
+  const countAll = Otp.find().count();
+  const countRequested = Otp.find({ status: "requested" }).count();
+  const countVerifyed = Otp.find({ status: "verifyed" }).count();
+
+  Promise.all([result, countAll, countRequested, countVerifyed])
+    .then(response => {
+      const r = {
+        data: response[0],
+        count: response[1],
+        countRequested: response[2],
+        countVerifyed: response[3]
+      };
+      res.json(OtpResponse.all(r));
+    })
+    .catch(err => next(err));
 };

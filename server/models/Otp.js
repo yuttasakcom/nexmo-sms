@@ -1,28 +1,25 @@
 const mongoose = require("mongoose");
 
 module.exports = mongoose.model(
-  "Client",
+  "Otp",
   new mongoose.Schema({
-    name: {
+    phone: {
       type: String,
-      unique: true,
       required: true
     },
-    clientId: {
+    phone_th: {
       type: String,
-      unique: true,
       required: true
     },
-    clientSecret: {
-      type: String,
-      unique: true,
+    code: {
+      type: Number,
       required: true
+    },
+    status: {
+      type: String,
+      default: "requested"
     },
     createdAt: {
-      type: Date,
-      default: Date.now
-    },
-    updatedAt: {
       type: Date,
       default: Date.now
     }
