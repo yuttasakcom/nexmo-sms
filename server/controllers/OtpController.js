@@ -17,12 +17,23 @@ exports.create = (req, res, next) => {
     return;
   }
 
-  Otp.findOne({ phone: req.body.phone, status: "verifyed" })
+  Otp.findOne({ phone: req.body.phone })
+    .sort({ createdAt: -1 })
     .then(data => {
-      if (!isEmpty(data)) {
+      if (!isEmpty(data) && data.status === "verifyed") {
         errors.otp = `Phone number ${req.body.phone} is verifyed`;
         next({ status: 422, message: errors });
         return;
+      }
+
+      if (!isEmpty(data) && data.status === "requested") {
+        const expDate = new Date(data.expiration).getTime();
+
+        if (expDate > Date.now()) {
+          errors.otp = `Phone number ${req.body.phone} is requested`;
+          next({ status: 422, message: errors });
+          return;
+        }
       }
 
       const nexmo = new Nexmo({
@@ -52,10 +63,14 @@ exports.create = (req, res, next) => {
           next({ status: 500, message: errors });
           return;
         } else {
+          const EXPIRE_MINUTES = 5;
+          const dateNow = Date.now();
           const otp = new Otp({
             phone: req.body.phone,
             phone_th: phone.join(""),
-            code
+            code,
+            expiration: new Date(dateNow).getTime() + EXPIRE_MINUTES * 60000,
+            createdAt: dateNow
           });
 
           otp
