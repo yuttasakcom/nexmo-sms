@@ -1,6 +1,14 @@
 const _ = require("lodash");
 
-const fileds = ["id", "phone", "phone_th", "code", "status", "createdAt"];
+const fileds = [
+  "id",
+  "phone",
+  "phone_th",
+  "code",
+  "status",
+  "expiration",
+  "createdAt"
+];
 
 exports.one = obj => _.pick(obj, fileds);
 

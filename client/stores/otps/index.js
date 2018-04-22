@@ -2,7 +2,8 @@ const state = {
   loadedOtps: [],
   otpCount: 0,
   otpCountRequested: 0,
-  otpCountVerifyed: 0
+  otpCountVerifyed: 0,
+  otpCountExpired: 0
 };
 
 const mutations = {
@@ -17,6 +18,9 @@ const mutations = {
   },
   SET_OTP_COUNT_VERIFYED(state, countVerifyed) {
     state.otpCountVerifyed = countVerifyed;
+  },
+  SET_OTP_COUNT_EXPIRED(state, countExpired) {
+    state.otpCountExpired = countExpired;
   }
 };
 
@@ -32,6 +36,9 @@ const actions = {
   },
   SET_OTP_COUNT_VERIFYED({ commit }, countVerifyed) {
     commit("SET_OTP_COUNT_VERIFYED", countVerifyed);
+  },
+  SET_OTP_COUNT_EXPIRED({ commit }, countExpired) {
+    commit("SET_OTP_COUNT_EXPIRED", countExpired);
   }
 };
 
@@ -47,6 +54,9 @@ const getters = {
   },
   otpCountVerifyed({ otpCountVerifyed }) {
     return otpCountVerifyed;
+  },
+  otpCountExpired({ otpCountExpired }) {
+    return otpCountExpired;
   }
 };
 

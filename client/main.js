@@ -5,7 +5,9 @@ import routes from "./routes";
 import store from "./stores";
 
 import "@/plugins/core-components";
+
 import "@/plugins/date-filter";
+import "@/plugins/expiration-filter";
 
 import App from "./App";
 

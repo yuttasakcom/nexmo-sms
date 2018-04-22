@@ -5,10 +5,13 @@
         <a class="nav-link active" href="#">OTP <span class="badge badge-info">{{ otpCount }}</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Request <span class="badge badge-warning">{{ otpCountRequested }}</span></a>
+        <a class="nav-link" href="#">Requested <span class="badge badge-warning">{{ otpCountRequested }}</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Verify <span class="badge badge-success">{{ otpCountVerifyed }}</span></a>
+        <a class="nav-link" href="#">Verifyed <span class="badge badge-success">{{ otpCountVerifyed }}</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Expired <span class="badge badge-danger">{{ otpCountExpired }}</span></a>
       </li>
     </ul>
 
@@ -20,6 +23,7 @@
       <th scope="col">Phone</th>
       <th scope="col">Code</th>
       <th scope="col">Status</th>
+      <th scope="col">Expiration</th>
       <th scope="col">Date</th>
     </tr>
   </thead>
@@ -28,7 +32,8 @@
       <th scope="row">{{ i + 1 }}</th>
       <td>{{ otp.phone }}</td>
       <td>{{ otp.code }}</td>
-      <td :class='{"text-warning": isRequest(otp.status), "text-success": isVerifyed(otp.status)}'>{{ otp.status }}</td>
+      <td :class='{"text-warning": isRequest(otp.status), "text-success": isVerifyed(otp.status), "text-danger": isExpired(otp.status, otp.expiration)}'>{{ otp.status | expiration(otp.expiration) }}</td>
+      <td>{{ otp.expiration | date }}</td>
       <td>{{ otp.createdAt | date }}</td>
     </tr>
   </tbody>
@@ -61,7 +66,8 @@ export default {
       "loadedOtps",
       "otpCount",
       "otpCountRequested",
-      "otpCountVerifyed"
+      "otpCountVerifyed",
+      "otpCountExpired"
     ])
   },
   methods: {
@@ -70,6 +76,18 @@ export default {
     },
     isVerifyed(status) {
       return status === "verifyed";
+    },
+    isExpired(status, expiration) {
+      if (status === "requested") {
+        const dateNow = Date.now();
+        const expDate = new Date(expiration).getTime();
+
+        if (dateNow > expDate) {
+          return true;
+        }
+      }
+
+      return false;
     }
   }
 };

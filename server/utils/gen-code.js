@@ -5,5 +5,5 @@ module.exports = length => {
     code += Math.floor(Math.random() * (9 - 0)) + 0;
   }
 
-  return code;
+  return code.toString();
 };

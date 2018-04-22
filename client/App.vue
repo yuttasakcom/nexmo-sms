@@ -27,6 +27,7 @@ export default {
         this.$store.dispatch("SET_OTP_COUNT", otps.count);
         this.$store.dispatch("SET_OTP_COUNT_REQUESTED", otps.countRequested);
         this.$store.dispatch("SET_OTP_COUNT_VERIFYED", otps.countVerifyed);
+        this.$store.dispatch("SET_OTP_COUNT_EXPIRED", otps.countExpired);
       })
       .catch(err => console.log(err));
   }
