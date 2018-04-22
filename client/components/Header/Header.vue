@@ -12,3 +12,9 @@ export default {
   }
 };
 </script>
+
+<style>
+header {
+  border-bottom: 4px solid #00a6b8;
+}
+</style>
