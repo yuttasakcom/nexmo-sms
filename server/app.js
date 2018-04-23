@@ -3,14 +3,12 @@ const dotenv = require("dotenv");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
-const ratelimit = require("./middleware/ratelimit");
 const cors = require("cors");
 const compression = require("compression");
 const path = require("path");
 
 const app = express();
 
-app.use(ratelimit());
 app.enable("trust proxy");
 app.disable("x-powered-by");
 app.use(helmet());
